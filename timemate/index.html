@@ -1,11 +1,243 @@
-时伴
-
-你有没有想过，你的生命还有多少个月？
-
-时伴用"生命盒子"将你的整个生命按月份划分成格子，已过的格子无法再回来，这种视觉冲击让人瞬间感知生命的有限性。
-
-除了震撼的生命可视化，时伴还提供完整的农历日历、倒数日提醒、生活习惯寿命计算等功能。融合中国传统文化与现代设计，让你在使用工具的同时，也能感受到文化的温度。
-
-最特别的是，时伴完全本地化运行，无需注册登录，你的数据完全属于你自己。
-
-时伴，陪你度过每一刻。
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时伴 - 生命可视化工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f9f7f7 0%, #f0f7ff 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
+            padding: 60px 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #7c93ff 0%, #5d7af8 25%, #8b7aff 50%, #ff7bac 75%, #ff9a7c 100%);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 16px;
+        }
+        
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #7c93ff, #8b7aff);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: 300;
+        }
+        
+        .logo-text {
+            font-size: 48px;
+            font-weight: 300;
+            background: linear-gradient(135deg, #2c3e50, #4a5568);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            text-align: center;
+            font-size: 20px;
+            color: #5d7af8;
+            margin-bottom: 60px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #f8fafc;
+            border-radius: 20px;
+            border-left: 4px solid #7c93ff;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #7c93ff;
+            border-radius: 50%;
+        }
+        
+        .section-content {
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            color: #5d7af8;
+            font-weight: 500;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            padding: 15px 0 15px 40px;
+            position: relative;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 15px;
+            width: 24px;
+            height: 24px;
+            background: #e6f0ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5d7af8;
+            font-size: 14px;
+        }
+        
+        .privacy-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e6f0ff;
+            color: #5d7af8;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .closing {
+            text-align: center;
+            font-size: 28px;
+            color: #2d3748;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #e2e8f0;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .dot-divider {
+            color: #7c93ff;
+            margin: 0 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .logo-text {
+                font-size: 36px;
+            }
+            
+            .section {
+                padding: 25px 20px;
+            }
+            
+            .section-content {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-icon">时</div>
+            <div class="logo-text">时伴</div>
+        </div>
+        
+        <div class="tagline">可视化生命 · 感知时间 · 传承文化</div>
+        
+        <div class="section">
+            <h2 class="section-title">生命可视化</h2>
+            <div class="section-content">
+                你有没有想过，你的生命还有多少个月？时伴用<span class="highlight">"生命盒子"</span>将你的整个生命按月份划分成格子，已过的格子无法再回来，这种视觉冲击让人瞬间感知生命的有限性。
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">核心功能</h2>
+            <div class="section-content">
+                除了震撼的生命可视化，时伴还提供完整的功能体系：
+                <ul class="feature-list">
+                    <li class="feature-item">完整的农历日历与节气提醒</li>
+                    <li class="feature-item">重要日子倒数计时</li>
+                    <li class="feature-item">生活习惯与寿命计算</li>
+                    <li class="feature-item">传统文化与现代设计的完美融合</li>
+                </ul>
+                融合中国传统文化与现代设计，让你在使用工具的同时，也能感受到<span class="highlight">文化的温度</span>。
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">隐私保护</h2>
+            <div class="section-content">
+                最特别的是，时伴完全<span class="highlight">本地化运行</span>，无需注册登录，你的数据完全属于你自己。
+                <div class="privacy-badge">
+                    🔐 你的数据，只属于你
+                </div>
+            </div>
+        </div>
+        
+        <div class="closing">
+            时伴<span class="dot-divider">·</span>陪你度过每一刻
+        </div>
+    </div>
+</body>
+</html>
